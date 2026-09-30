@@ -20,6 +20,7 @@ import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import Reveal from '../components/Reveal.jsx'
 import Rating from '../components/Rating.jsx'
+import ScrollLink from '../components/ScrollLink.jsx'
 import { zonas } from '../data/campings.js'
 
 const heroImg = 'https://picsum.photos/seed/campi-hero/1200/1400'
@@ -147,12 +148,12 @@ export default function Landing() {
                 Explorar campings
                 <ArrowRight size={16} weight="bold" />
               </Link>
-              <Link
-                to="/#dueños"
+              <ScrollLink
+                to="#dueños"
                 className="inline-flex items-center gap-2 rounded-full border border-forest-900/15 px-6 py-3 text-sm font-semibold text-ink transition hover:border-forest-600 hover:text-forest-700 dark:border-white/15 dark:text-fog dark:hover:border-forest-300 dark:hover:text-forest-300"
               >
                 Soy dueño
-              </Link>
+              </ScrollLink>
             </div>
           </motion.div>
 
@@ -323,13 +324,13 @@ export default function Landing() {
                   Tú cobras el 100% de tu noche. Nuestra comisión la paga el viajero al reservar.
                 </p>
               </div>
-              <Link
-                to="/explorar"
+              <a
+                href="mailto:hola@campi.cl?subject=Quiero%20publicar%20mi%20camping"
                 className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-forest-800 transition hover:bg-forest-50 active:translate-y-px"
               >
                 Soy dueño
                 <ArrowRight size={16} weight="bold" />
-              </Link>
+              </a>
             </div>
           </Reveal>
 

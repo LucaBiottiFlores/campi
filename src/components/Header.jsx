@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { List, X } from '@phosphor-icons/react'
 import Logo from './Logo.jsx'
+import ScrollLink from './ScrollLink.jsx'
 
 const navLink = ({ isActive }) =>
   `text-sm font-medium transition-colors ${
@@ -20,12 +21,12 @@ export default function Header() {
           <NavLink to="/explorar" className={navLink}>
             Explorar
           </NavLink>
-          <Link to="/#como-funciona" className="text-sm font-medium text-muted transition-colors hover:text-ink dark:text-fogmuted dark:hover:text-fog">
+          <ScrollLink to="#como-funciona" className="text-sm font-medium text-muted transition-colors hover:text-ink dark:text-fogmuted dark:hover:text-fog">
             Cómo funciona
-          </Link>
-          <Link to="/#dueños" className="text-sm font-medium text-muted transition-colors hover:text-ink dark:text-fogmuted dark:hover:text-fog">
+          </ScrollLink>
+          <ScrollLink to="#dueños" className="text-sm font-medium text-muted transition-colors hover:text-ink dark:text-fogmuted dark:hover:text-fog">
             Soy dueño
-          </Link>
+          </ScrollLink>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -53,12 +54,12 @@ export default function Header() {
             <Link to="/explorar" onClick={() => setOpen(false)} className="text-base font-medium text-ink dark:text-fog">
               Explorar
             </Link>
-            <Link to="/#como-funciona" onClick={() => setOpen(false)} className="text-base font-medium text-ink dark:text-fog">
+            <ScrollLink to="#como-funciona" onClick={() => setOpen(false)} className="text-base font-medium text-ink dark:text-fog">
               Cómo funciona
-            </Link>
-            <Link to="/#dueños" onClick={() => setOpen(false)} className="text-base font-medium text-ink dark:text-fog">
+            </ScrollLink>
+            <ScrollLink to="#dueños" onClick={() => setOpen(false)} className="text-base font-medium text-ink dark:text-fog">
               Soy dueño
-            </Link>
+            </ScrollLink>
             <Link
               to="/explorar"
               onClick={() => setOpen(false)}

@@ -2,16 +2,9 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 export default function ScrollToTop() {
-  const { pathname, hash } = useLocation()
+  const { pathname } = useLocation()
   useEffect(() => {
-    if (hash) {
-      const el = document.querySelector(hash)
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' })
-        return
-      }
-    }
     window.scrollTo(0, 0)
-  }, [pathname, hash])
+  }, [pathname])
   return null
 }

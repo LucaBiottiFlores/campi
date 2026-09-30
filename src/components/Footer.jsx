@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo.jsx'
+import ScrollLink from './ScrollLink.jsx'
 
 export default function Footer() {
   return (
@@ -38,19 +39,19 @@ export default function Footer() {
             <p className="text-sm font-semibold text-ink dark:text-fog">Para dueños</p>
             <ul className="mt-4 space-y-3 text-sm text-muted dark:text-fogmuted">
               <li>
-                <Link to="/#dueños" className="transition-colors hover:text-ink dark:hover:text-fog">
+                <ScrollLink to="#dueños" className="transition-colors hover:text-ink dark:hover:text-fog">
                   Publicar mi camping
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/#dueños" className="transition-colors hover:text-ink dark:hover:text-fog">
+                <ScrollLink to="#dueños" className="transition-colors hover:text-ink dark:hover:text-fog">
                   Comisiones
-                </Link>
+                </ScrollLink>
               </li>
               <li>
-                <Link to="/#dueños" className="transition-colors hover:text-ink dark:hover:text-fog">
+                <ScrollLink to="#dueños" className="transition-colors hover:text-ink dark:hover:text-fog">
                   Preguntas frecuentes
-                </Link>
+                </ScrollLink>
               </li>
             </ul>
           </div>
