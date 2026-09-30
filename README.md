@@ -26,10 +26,10 @@ npm run lint     # oxlint
 
 ## Rutas
 
-- `/` — landing
-- `/explorar` — búsqueda y resultados (acepta `?zona=`)
-- `/camping/:id` — detalle de un camping
-- `/reservar/:id` — reserva y pago simulado
+- `/` - landing
+- `/explorar` - búsqueda y resultados (acepta `?zona=`)
+- `/camping/:id` - detalle de un camping
+- `/reservar/:id` - reserva y pago simulado
 
 ## Pendiente antes de lanzar
 

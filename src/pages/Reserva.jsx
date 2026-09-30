@@ -96,7 +96,7 @@ export default function Reserva() {
                 <div className="flex justify-between">
                   <dt className="text-muted dark:text-fogmuted">Fechas</dt>
                   <dd className="font-medium text-ink dark:text-fog">
-                    {noches} {noches === 1 ? 'noche' : 'noches'} · {personas} personas
+                    {noches} {noches === 1 ? 'noche' : 'noches'}, {personas} personas
                   </dd>
                 </div>
                 <div className="flex justify-between">
