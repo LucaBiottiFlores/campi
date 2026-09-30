@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Neutros (verde-hueso, no el beige cálido de "craft") */
+  --color-bone: #f4f6f1;
+  --color-ink: #14241c;
+  --color-muted: #5b6b5f;
+
+  /* Acento único: verde bosque */
+  --color-forest-50: #f0f6f1;
+  --color-forest-100: #dcebe0;
+  --color-forest-200: #b9d7c2;
+  --color-forest-300: #8cbb9c;
+  --color-forest-400: #5c9a76;
+  --color-forest-500: #3b7d5a;
+  --color-forest-600: #2a6647;
+  --color-forest-700: #215239;
+  --color-forest-800: #1b422e;
+  --color-forest-900: #143626;
+  --color-forest-950: #0b2016;
+
+  /* Ámbar, solo para ratings/estrellas (semántico, no un segundo acento de marca) */
+  --color-amber: #df8a2b;
+
+  /* Modo oscuro */
+  --color-night: #0c1410;
+  --color-night2: #132019;
+  --color-fog: #e9efe9;
+  --color-fogmuted: #9db0a3;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background-color: var(--color-forest-200);
+    color: var(--color-forest-950);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
