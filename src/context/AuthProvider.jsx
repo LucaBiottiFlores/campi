@@ -59,7 +59,7 @@ export function AuthProvider({ children }) {
       password,
       options: {
         data: { nombre, rol },
-        emailRedirectTo: typeof window !== 'undefined' ? window.location.origin : undefined,
+        emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}${import.meta.env.BASE_URL}` : undefined,
       },
     })
     if (error) throw error
