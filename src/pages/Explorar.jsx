@@ -1,21 +1,42 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { CalendarBlank, MagnifyingGlass, MapPin, Users, X } from '@phosphor-icons/react'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import CampingCard from '../components/CampingCard.jsx'
-import { campings } from '../data/campings.js'
-
-const allServices = Array.from(new Set(campings.flatMap((c) => c.servicios))).sort()
+import { listCampings } from '../lib/api.js'
 
 export default function Explorar() {
   const [params] = useSearchParams()
   const initialZona = params.get('zona') || ''
 
+  const [campings, setCampings] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState('')
+
   const [query, setQuery] = useState('')
   const [zona, setZona] = useState(initialZona)
   const [servicios, setServicios] = useState([])
   const [personas, setPersonas] = useState(2)
+
+  useEffect(() => {
+    let active = true
+    listCampings()
+      .then((data) => {
+        if (active) setCampings(data)
+      })
+      .catch(() => {
+        if (active) setLoadError('No pudimos cargar los campings. Intenta de nuevo.')
+      })
+      .finally(() => {
+        if (active) setLoading(false)
+      })
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const allServices = useMemo(() => Array.from(new Set(campings.flatMap((c) => c.servicios))).sort(), [campings])
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -29,7 +50,7 @@ export default function Explorar() {
       const matchServicios = servicios.every((s) => c.servicios.includes(s))
       return matchQuery && matchZona && matchServicios
     })
-  }, [query, zona, servicios])
+  }, [campings, query, zona, servicios])
 
   function toggleServicio(s) {
     setServicios((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]))
@@ -126,7 +147,9 @@ export default function Explorar() {
         {/* Resultados */}
         <div className="mt-8 flex items-center justify-between">
           <p className="text-sm text-muted dark:text-fogmuted">
-            {results.length} {results.length === 1 ? 'camping encontrado' : 'campings encontrados'}
+            {loading
+              ? 'Cargando campings...'
+              : `${results.length} ${results.length === 1 ? 'camping encontrado' : 'campings encontrados'}`}
           </p>
           {hasFilters && (
             <button
@@ -140,7 +163,19 @@ export default function Explorar() {
           )}
         </div>
 
-        {results.length > 0 ? (
+        {loadError && (
+          <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 dark:border-red-900/40 dark:bg-red-950/30 dark:text-red-300">
+            {loadError}
+          </div>
+        )}
+
+        {loading ? (
+          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="h-72 animate-pulse rounded-2xl bg-forest-900/5 dark:bg-white/5" />
+            ))}
+          </div>
+        ) : results.length > 0 ? (
           <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {results.map((c) => (
               <CampingCard key={c.id} camping={c} />

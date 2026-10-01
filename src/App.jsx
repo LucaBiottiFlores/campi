@@ -1,9 +1,12 @@
 import { Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Landing from './pages/Landing.jsx'
 import Explorar from './pages/Explorar.jsx'
 import Detalle from './pages/Detalle.jsx'
 import Reserva from './pages/Reserva.jsx'
+import Auth from './pages/Auth.jsx'
+import Panel from './pages/Panel.jsx'
 
 export default function App() {
   return (
@@ -14,6 +17,15 @@ export default function App() {
         <Route path="/explorar" element={<Explorar />} />
         <Route path="/camping/:id" element={<Detalle />} />
         <Route path="/reservar/:id" element={<Reserva />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route
+          path="/panel"
+          element={
+            <ProtectedRoute ownerOnly>
+              <Panel />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   )
